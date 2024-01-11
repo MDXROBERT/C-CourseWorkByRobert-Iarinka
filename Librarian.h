@@ -1,8 +1,16 @@
 #ifndef LIBRARIAN_H
 #define LIBRARIAN_H
 #include "Person.h"
-#include <string>
+#include <vector>
+#include "Book.h"
+#include "Member.h"
+#include "InputHandle.h"
+#include "fileread.h"
+#include "glob.h"
+#include "Date.h"
 
+
+extern std::vector<Book> libraryBooks;
 class Librarian : public Person{
     private:
     int staffID;
@@ -19,7 +27,13 @@ class Librarian : public Person{
     int setStaffID(int staffID);
     int getSalary();
     void setSalary(int salary);
+    void displayMembers();
+    
 
     
 };
 #endif 
+
+
+
+

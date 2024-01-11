@@ -25,3 +25,4 @@ std::string Person::getAddress() {
 std::string Person::getEmail() {
     return this->email;
 }
+
