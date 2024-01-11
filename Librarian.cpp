@@ -74,7 +74,7 @@ void Librarian::returnBook(int memberID, int bookID)
         if (std::stoi(member.getMemberID()) == memberID)
         {
             // Member found
-            auto &booksLoaned = member.getBooksBorrowed(); // This should be a reference
+            auto &booksLoaned = member.getBooksBorrowed(); 
 
             // Find the book by ID within the member's loaned books
             auto it = std::remove_if(booksLoaned.begin(), booksLoaned.end(), [bookID](Book &b)

@@ -8,12 +8,7 @@
 #include <algorithm>
 #include <regex>
 
-
 std::string getStringInput(std::string prompt);
 int getIntInput(std::string prompt);
 
-
-
-
 #endif
-

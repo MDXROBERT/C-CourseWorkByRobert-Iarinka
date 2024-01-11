@@ -20,7 +20,6 @@ int main()
     int memberID;
     int bookID;
 
-    // Display the welcome message once, outside the loop
     std::cout << "Welcome, Librarian!" << std::endl;
 
     while (true)

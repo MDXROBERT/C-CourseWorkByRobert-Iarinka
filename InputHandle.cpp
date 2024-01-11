@@ -1,6 +1,4 @@
 #include "InputHandle.h"
-
-
 #include <string>
 #include <iostream>
 #include <limits>

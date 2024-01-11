@@ -7,9 +7,4 @@
 
 std::vector<Book> readBooks(std::string libraryBooks);
 
-
-
-
-
 #endif // FILEREAD_H
-

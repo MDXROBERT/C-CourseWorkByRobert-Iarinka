@@ -1,7 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
 
-class Date {
+class Date
+{
 private:
     int day;
     int month;
@@ -10,8 +11,8 @@ private:
 public:
     Date();
     Date(int day, int month, int year);
-    int getDay() ;
-    int getMonth() ;
+    int getDay();
+    int getMonth();
     int getYear();
 
     void setDay(int day);
@@ -19,7 +20,7 @@ public:
     void setYear(int year);
 
     static Date getCurrentDate();
-    int differenceInDays( Date otherDate);
+    int differenceInDays(Date otherDate);
 };
 
 #endif

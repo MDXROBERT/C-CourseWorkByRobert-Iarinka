@@ -5,27 +5,34 @@
 #include "Member.h"
 #include "glob.h"
 
-
 std::vector<Member> memberList;
 std::vector<Book> libraryBooks;
 
-// Mocks
-std::string getStringInput(const std::string& prompt) {
-    if (prompt.find("name") != std::string::npos) {
-        return "John Doe";
-    } else if (prompt.find("address") != std::string::npos) {
-        return "123 Main St";
-    } else if (prompt.find("email") != std::string::npos) {
-        return "john.doe@example.com";
+
+std::string getStringInput(const std::string &prompt)
+{
+    if (prompt.find("name") != std::string::npos)
+    {
+        return "name";
+    }
+    else if (prompt.find("address") != std::string::npos)
+    {
+        return "123 Main";
+    }
+    else if (prompt.find("email") != std::string::npos)
+    {
+        return "name@gmail.com";
     }
     return "";
 }
 
-int getIntInput(const std::string& prompt) {
+int getIntInput(const std::string &prompt)
+{
     return 1;
 }
 
-TEST_CASE("Full Program Flow", "[full_flow]") {
+TEST_CASE("Full Program Flow", "[full_flow]")
+{
     // Create a librarian
     Librarian librarian(1, 5000, "Test Librarian", "123 Library Lane", "librarian@test.com");
 
@@ -48,14 +55,13 @@ TEST_CASE("Full Program Flow", "[full_flow]") {
     librarian.returnBook(1, 1);
     REQUIRE(memberList.at(0).getBooksBorrowed().empty());
 
-    // Display borrowed books 
+    // Display borrowed books
     librarian.displayBorrowedBooks(1);
 
-    // Calculate fines 
+    // Calculate fines
     librarian.calcFine(1);
 
     // Reset global state after the test case
     memberList.clear();
     libraryBooks.clear();
 }
-

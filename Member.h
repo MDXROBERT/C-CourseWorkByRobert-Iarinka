@@ -3,19 +3,21 @@
 
 #include "Person.h"
 #include <vector>
-  
+
 class Book;
 
-class Member : public Person{
-    private:
+class Member : public Person
+{
+private:
     int memberID;
     std::vector<Book> booksLoaned;
-    public:
+
+public:
     Member();
     Member(int memberID, std::string name, std::string address, std::string email);
     std::string getMemberID();
-    std::vector<Book>& getBooksBorrowed();
+    std::vector<Book> &getBooksBorrowed();
     void setBooksBorrowed(Book book);
 };
 
-#endif 
+#endif

@@ -9,15 +9,15 @@
 #include "glob.h"
 #include "Date.h"
 
-
 extern std::vector<Book> libraryBooks;
-class Librarian : public Person{
-    private:
+class Librarian : public Person
+{
+private:
     int staffID;
     int salary;
 
-    public:
-    Librarian( int staffID, int salary, std::string name, std::string address, std::string email );
+public:
+    Librarian(int staffID, int salary, std::string name, std::string address, std::string email);
     void addMember();
     void issueBook(int memberID, int bookID);
     void returnBook(int memberID, int bookID);
@@ -28,12 +28,5 @@ class Librarian : public Person{
     int getSalary();
     void setSalary(int salary);
     void displayMembers();
-    
-
-    
 };
-#endif 
-
-
-
-
+#endif

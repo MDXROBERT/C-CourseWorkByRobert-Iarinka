@@ -33,10 +33,10 @@ $(BIN): $(OBJS)
 test: $(TEST_OBJS)
 	$(CC) $(CFLAGS) -o $(TEST_BIN) $(TEST_OBJS) && ./$(TEST_BIN)
 
-# Compile the source files into object files
+
 %.o: %.cpp $(CATCH)
 	$(CC) $(CFLAGS) -c $<
 
-# Clean up
+
 clean:
 	rm -f $(BIN) $(OBJS) $(TEST_BIN) $(TEST_OBJS)
