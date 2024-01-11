@@ -6,6 +6,7 @@
 #include <sstream>
 #include <limits>
 #include <algorithm>
+#include <regex>
 
 
 std::string getStringInput(std::string prompt);

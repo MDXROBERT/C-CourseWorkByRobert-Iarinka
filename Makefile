@@ -1,27 +1,42 @@
-# Compiler
+
 CC = g++
 
-# Compiler Flags
+
 CFLAGS = -Wall -std=c++11
 
-# Output Binary Name
+
 BIN = library_system
 
-# Source Files
+
+TEST_BIN = tests
+
+
 SRCS = main.cpp Book.cpp Member.cpp Person.cpp Librarian.cpp InputHandle.cpp Date.cpp fileread.cpp
 
-# Object Files
+
+TEST_SRCS = tests.cpp Book.cpp Member.cpp Person.cpp Librarian.cpp InputHandle.cpp Date.cpp fileread.cpp
+
+
 OBJS = $(SRCS:.cpp=.o)
 
-# Build the program
+
+TEST_OBJS = $(TEST_SRCS:.cpp=.o)
+
+
+CATCH = catch.hpp
+
+
 $(BIN): $(OBJS)
 	$(CC) $(CFLAGS) -o $(BIN) $(OBJS)
 
+
+test: $(TEST_OBJS)
+	$(CC) $(CFLAGS) -o $(TEST_BIN) $(TEST_OBJS) && ./$(TEST_BIN)
+
 # Compile the source files into object files
-%.o: %.cpp
+%.o: %.cpp $(CATCH)
 	$(CC) $(CFLAGS) -c $<
 
 # Clean up
 clean:
-	rm -f $(BIN) $(OBJS)
-
+	rm -f $(BIN) $(OBJS) $(TEST_BIN) $(TEST_OBJS)
