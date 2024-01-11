@@ -5,7 +5,7 @@
 #include "Member.h"
 #include "glob.h"
 
-// Assuming glob.h has the extern declarations for these:
+
 std::vector<Member> memberList;
 std::vector<Book> libraryBooks;
 
@@ -48,10 +48,10 @@ TEST_CASE("Full Program Flow", "[full_flow]") {
     librarian.returnBook(1, 1);
     REQUIRE(memberList.at(0).getBooksBorrowed().empty());
 
-    // Display borrowed books (should be empty now)
+    // Display borrowed books 
     librarian.displayBorrowedBooks(1);
 
-    // Calculate fines (should be zero as the book is returned on time)
+    // Calculate fines 
     librarian.calcFine(1);
 
     // Reset global state after the test case
