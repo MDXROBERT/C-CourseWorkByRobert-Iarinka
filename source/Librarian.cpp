@@ -15,6 +15,7 @@ Updated on 12 Jan 2024
 #include "../header/Book.h"
 #include "../header/InputHandle.h"
 
+// Constructor
 Librarian::Librarian(int staffID, int salary, std::string name, std::string address, std::string email)
 {
     this->staffID = staffID;
@@ -23,7 +24,7 @@ Librarian::Librarian(int staffID, int salary, std::string name, std::string addr
     setAddress(address);
     setEmail(email);
 }
-
+//Function to add a member to the member list vector
 void Librarian::addMember()
 {
     std::string name = getStringInput("Enter name: ");
@@ -35,6 +36,7 @@ void Librarian::addMember()
     memberList.push_back(newMember);
 }
 
+//Function to issue a book to a member
 void Librarian::issueBook(int memberID, int bookID)
 {
     // Find the member by ID
@@ -67,6 +69,7 @@ void Librarian::issueBook(int memberID, int bookID)
     }
 }
 
+//Function to display the member list
 void Librarian::displayMembers()
 {
     std::cout << "Members List:" << std::endl;
@@ -79,6 +82,7 @@ void Librarian::displayMembers()
     }
 }
 
+//Function to return a book
 void Librarian::returnBook(int memberID, int bookID)
 {
     // Find the member by ID
@@ -117,13 +121,13 @@ void Librarian::returnBook(int memberID, int bookID)
             {
                 std::cout << "No book with ID " << bookID << " found in member's borrowed books." << std::endl;
             }
-            return; // Exit the function because the member was found
+            return; 
         }
     }
 
     std::cout << "Member with ID " << memberID << " not found." << std::endl;
 }
-
+//Function to display the borrowed books
 void Librarian::displayBorrowedBooks(int memberID)
 {
     auto member_it = std::find_if(memberList.begin(), memberList.end(), [memberID](Member m)
@@ -163,8 +167,7 @@ void Librarian::calcFine(int memberID)
     if (member_it != memberList.end())
     {
         int totalFine = 0;
-        Date currentDate = Date::getCurrentDate(); // Use the static method to get the current date
-
+        Date currentDate = Date::getCurrentDate(); 
         for (auto book : member_it->getBooksBorrowed())
         {
             Date dueDate = book.getDueDate();
@@ -172,7 +175,8 @@ void Librarian::calcFine(int memberID)
 
             if (daysLate > 0)
             {
-                int fine = daysLate * 1; // £1 fine for each day late
+                // £1 fine for each day late
+                int fine = daysLate * 1; 
                 totalFine += fine;
             }
         }

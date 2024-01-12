@@ -19,10 +19,12 @@ Updated on 12 Jan 2024
 
 int main()
 {
+    // Create a librarian
     Librarian librarian(1, 5000, "Librarian Name", "Librarian Address", "librarian@email.com");
 
      std::string filename;
     std::cout << "Welcome, Librarian!" << std::endl;
+    // Prompt the user to enter the filename for the library book
     std::cout << "Please enter the filename for the library books: ";
     std::getline(std::cin, filename);
 
@@ -34,6 +36,7 @@ int main()
     int bookID;
 
     while (true)
+    //Menu for librarian
     {
         std::cout << "\nWhat would you like to do next?" << std::endl;
         std::cout << "1. Add a Member" << std::endl;
@@ -45,6 +48,7 @@ int main()
         std::cout << "Enter your choice: ";
 
         int choice = getIntInput("");
+        //Switch case for the menu
 
         switch(choice)
         {

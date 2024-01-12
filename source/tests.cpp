@@ -21,7 +21,6 @@ int getIntInput(const std::string &prompt);
 TEST_CASE("Full Program Flow", "[full_flow]")
 {
 
-
     // Create a librarian
     Librarian librarian(1, 5000, "Test Librarian", "123 Library Lane", "librarian@test.com");
 
@@ -60,7 +59,6 @@ TEST_CASE("Full Program Flow", "[full_flow]")
     memberList.clear();
     libraryBooks.clear();
 }
-
 
 std::string getStringInput(const std::string &prompt)
 {

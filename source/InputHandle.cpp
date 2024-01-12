@@ -12,15 +12,18 @@ Updated on 12 Jan 2024
 #include <limits>
 #include <regex>
 
+//Function to get a correct string input from the user.
 std::string getStringInput(std::string prompt) {
     std::string input;
+    //Specifc choosen regex for emaila address to be real
     std::regex emailRegex(R"(\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b)");
+    //Specific choosen regex for names to be real. Names must contain only letters and single spaces between words.
     std::regex nameRegex(R"((^[A-Za-z]+)( [A-Za-z]+)*$)"); 
 
     while (true) {
         std::cout << prompt;
         std::getline(std::cin, input);
-
+        //Validates
         if (!std::cin.fail()) {
             if (prompt.find("email") != std::string::npos && !std::regex_match(input, emailRegex)) {
                 std::cout << "Invalid email format. Please try again.\n";
@@ -38,7 +41,7 @@ std::string getStringInput(std::string prompt) {
     }
 }
 
-
+//Function to get a correct integer input from the user.
 int getIntInput(std::string prompt) {
     int input;
     while (true) {

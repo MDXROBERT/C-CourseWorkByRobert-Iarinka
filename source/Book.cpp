@@ -8,7 +8,7 @@ Created on 9 Jan 2024
 Updated on 12 Jan 2024
 
 */
-
+// Constructor
 Book::Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName)
 {
     this->bookID = bookID;

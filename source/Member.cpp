@@ -9,6 +9,7 @@ Updated on 12 Jan 2024
 #include "../header/Member.h"
 #include "../header/Book.h"
 
+//Constructor
 Member::Member(int memberID, std::string name, std::string address, std::string email)
 {
     setName(name);

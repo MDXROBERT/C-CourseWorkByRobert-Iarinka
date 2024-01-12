@@ -12,17 +12,19 @@ Updated on 12 Jan 2024
 std::vector<Book> readBooks(std::string libraryBooks)
 {
     std::vector<Book> books;
+    //Opens the file
     std::ifstream file(libraryBooks);
     std::string line;
 
     getline(file, line);
 
+//Reads the file line by line
     while (getline(file, line))
     {
         std::vector<std::string> tokens;
         std::string token;
         bool inQuotes = false;
-
+        //Goes through each character in a line 
         for (char ch : line)
         {
             if (ch == '"')
@@ -43,7 +45,7 @@ std::vector<Book> readBooks(std::string libraryBooks)
         }
 
         tokens.push_back(token);
-
+        //Cheks if there are enough tokens 
         if (tokens.size() >= 5)
         {
             int bookID = std::stoi(tokens[0]);
