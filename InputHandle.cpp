@@ -7,7 +7,8 @@
 std::string getStringInput(std::string prompt) {
     std::string input;
     std::regex emailRegex(R"(\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b)");
-    std::regex nameRegex(R"([A-Za-z]+)"); 
+    std::regex nameRegex(R"((^[A-Za-z]+)( [A-Za-z]+)*$)"); 
+
     while (true) {
         std::cout << prompt;
         std::getline(std::cin, input);
@@ -17,7 +18,7 @@ std::string getStringInput(std::string prompt) {
                 std::cout << "Invalid email format. Please try again.\n";
                 continue;
             } else if (prompt.find("name") != std::string::npos && !std::regex_match(input, nameRegex)) {
-                std::cout << "Invalid name. Names must contain only letters. Please try again.\n";
+                std::cout << "Invalid name. Names must contain only letters and single spaces between words. Please try again.\n";
                 continue;
             }
             return input;
