@@ -7,6 +7,8 @@ Created on 9 Jan 2024
 Updated on 12 Jan 2024
 
 */
+#include <ctime>
+#include <chrono>
 class Date
 {
 private:
@@ -27,6 +29,9 @@ public:
 
     static Date getCurrentDate();
     int differenceInDays(Date otherDate);
+    
+Date addDays (int days);
 };
+
 
 #endif

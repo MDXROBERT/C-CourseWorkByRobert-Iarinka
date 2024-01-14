@@ -7,13 +7,14 @@ Updated on 12 Jan 2024
 */
 #include "../header/Date.h"
 #include <iostream>
+#include <cmath>
 
 //Deafulat constructor
 Date::Date() : day(1), month(1), year(1) {}
 
 Date::Date(int day, int month, int year) : day(day), month(month), year(year) {}
 
-//
+
 int Date::getDay()
 {
     return this->day;
@@ -44,21 +45,45 @@ void Date::setYear(int year)
     this->year = year;
 }
 
-//Returns the difference in days between two dates
+
 int Date::differenceInDays(Date otherDate)
 {
-    //Calculate the number of days between the two dates
+
     int days1 = this->year * 365 + this->month * 30 + this->day;
     int days2 = otherDate.year * 365 + otherDate.month * 30 + otherDate.day;
 
-    return std::abs(days1 - days2);
+    
+    return days1 - days2; 
 }
 
-//Gets the current date from the user
-Date Date::getCurrentDate()
-{
-    int currentDay, currentMonth, currentYear;
-    std::cout << "Enter the current date (dd mm yyyy): ";
-    std::cin >> currentDay >> currentMonth >> currentYear;
+
+// get current time
+Date Date::getCurrentDate() {
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+    struct tm *parts = std::localtime(&now_c);
+
+    int currentDay = parts->tm_mday;
+    int currentMonth = parts->tm_mon + 1;  
+    int currentYear = parts->tm_year + 1900;  
+
     return Date(currentDay, currentMonth, currentYear);
 }
+// add days to the date
+Date Date::addDays(int days)  {
+    int newDay = this->day + days;
+    int newMonth = this->month;
+    int newYear = this->year;
+
+    while (newDay > 30) { 
+        newDay -= 30;
+        newMonth += 1;
+        if (newMonth > 12) {
+            newMonth = 1;
+            newYear += 1;
+        }
+    }
+
+    return Date(newDay, newMonth, newYear);
+}
+

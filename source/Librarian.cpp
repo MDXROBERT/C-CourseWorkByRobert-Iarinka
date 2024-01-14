@@ -24,7 +24,7 @@ Librarian::Librarian(int staffID, int salary, std::string name, std::string addr
     setAddress(address);
     setEmail(email);
 }
-//Function to add a member to the member list vector
+//add a member to the member list vector
 void Librarian::addMember()
 {
     std::string name = getStringInput("Enter name: ");
@@ -42,32 +42,32 @@ void Librarian::issueBook(int memberID, int bookID)
     // Find the member by ID
     auto member_it = std::find_if(memberList.begin(), memberList.end(), [memberID](Member member)
                                   {
-                                      return member.getMemberID() == std::to_string(memberID); // returns string
+                                      return member.getMemberID() == std::to_string(memberID); 
                                   });
 
     // Find the book by ID
     auto book_it = std::find_if(libraryBooks.begin(), libraryBooks.end(), [bookID](Book book)
                                 {
-                                    return book.getbookID() == std::to_string(bookID); // getBookID returns a string
+                                    return book.getbookID() == std::to_string(bookID); 
                                 });
 
     if (member_it != memberList.end() && book_it != libraryBooks.end())
     {
-        int dueDay, dueMonth, dueYear;
-        std::cout << "Enter due date (dd mm yyyy): ";
-        std::cin >> dueDay >> dueMonth >> dueYear;
-        Date dueDate(dueDay, dueMonth, dueYear);
+        // Get current date and add 3 days for due date
+        Date currentDate = Date::getCurrentDate();
+        Date dueDate = currentDate.addDays(3); 
 
         book_it->setDueDate(dueDate);
         // Add the book to the member's loaned books
         member_it->setBooksBorrowed(*book_it);
-        std::cout << "Book with ID " << bookID << " issued to member with ID " << memberID << "." << std::endl;
+        std::cout << "Book with ID " << bookID << " issued to member with ID " << memberID << ". Due Date: "<< dueDate.getDay()<<"/" << dueDate.getMonth()<<"/"<<dueDate.getYear()<< std::endl;
     }
     else
     {
         std::cout << "Member ID " << memberID << " or Book ID " << bookID << " not found." << std::endl;
     }
 }
+
 
 //Function to display the member list
 void Librarian::displayMembers()
@@ -100,7 +100,7 @@ void Librarian::returnBook(int memberID, int bookID)
             // If a book was found, remove it and calculate the fine
             if (it != booksLoaned.end())
             {
-                Date currentDate = Date::getCurrentDate(); // Use the static method to get the current date
+                Date currentDate = Date::getCurrentDate(); 
                 Date dueDate = it->getDueDate();
                 int daysLate = currentDate.differenceInDays(dueDate);
 
@@ -175,7 +175,6 @@ void Librarian::calcFine(int memberID)
 
             if (daysLate > 0)
             {
-                // £1 fine for each day late
                 int fine = daysLate * 1; 
                 totalFine += fine;
             }
