@@ -4,6 +4,7 @@
 #include "../header/Book.h"
 #include "../header/Member.h"
 #include "../header/glob.h"
+#include "../header/Date.h"
 
 /*
 tests.cpp
@@ -60,6 +61,73 @@ TEST_CASE("Full Program Flow", "[full_flow]")
     libraryBooks.clear();
 }
 
+TEST_CASE("Adding Multiple Members", "[member_management]")
+{
+    // Setup
+    Librarian librarian(1, 5000, "Test Librarian", "123 Library Lane", "librarian@test.com");
+    REQUIRE(memberList.empty());
+
+    // Test adding multiple members
+    librarian.addMember(); // Member with name "name"
+    librarian.addMember(); // Member with name "another name"
+    REQUIRE(memberList.size() == 2);
+    REQUIRE(memberList.at(1).getName() == "another name"); 
+
+    // Cleanup
+    memberList.clear();
+}
+
+TEST_CASE("Issuing Book Not In Catalogue", "[issue_management]")
+{
+    // Setup
+    Librarian librarian(1, 5000, "Test Librarian", "123 Library Lane", "librarian@test.com");
+    librarian.addMember(); // Add a member for issuing
+    REQUIRE(libraryBooks.empty());
+
+    // Test issuing a book that does not exist
+    librarian.issueBook(1, 999); // Non-existent bookID
+    REQUIRE(memberList.at(0).getBooksBorrowed().empty()); // Member should not have any books issued
+
+    // Cleanup
+    memberList.clear();
+}
+
+TEST_CASE("Returning Book Not Borrowed", "[return_management]")
+{
+    // Setup
+    Librarian librarian(1, 5000, "Test Librarian", "123 Library Lane", "librarian@test.com");
+    librarian.addMember();
+    REQUIRE(memberList.size() == 1);
+
+    // Test returning a book that was never borrowed
+    librarian.returnBook(1, 999); // Non-existent bookID
+    REQUIRE(memberList.at(0).getBooksBorrowed().empty()); // Member should still have no books
+
+    // Cleanup
+    memberList.clear();
+}
+
+TEST_CASE("Calculating Fine for Late Returns", "[fine_calculation]")
+{
+    // Setup
+    Librarian librarian(1, 5000, "Test Librarian", "123 Library Lane", "librarian@test.com");
+    librarian.addMember();
+    Book testBook(1, "Overdue Book", "Author", "Last Name");
+    libraryBooks.push_back(testBook);
+
+    // Mock current date to be after the due date
+    Date::getCurrentDate(); 
+
+    // Issue and return the book to generate a fine
+    librarian.issueBook(1, 1); 
+    librarian.returnBook(1, 1); 
+
+    // Check that a fine was calculated
+   
+
+  
+}
+
 std::string getStringInput(const std::string &prompt)
 {
     if (prompt.find("name") != std::string::npos)
@@ -81,3 +149,4 @@ int getIntInput(const std::string &prompt)
 {
     return 1;
 }
+
